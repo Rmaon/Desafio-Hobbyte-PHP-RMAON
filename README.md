@@ -1,5 +1,10 @@
 # Desafio-Hobbyte-PHP-RMAON
-Desafio 1. Asignatura PHP sobre el hobbit
+Desafio 1. Proyecto de PHP sobre el hobbit
+## R E P O
+https://github.com/Rmaon/Desafio-Hobbyte-PHP-RMAON
+## P R O J E C T 
+https://github.com/users/Rmaon/projects/9/views/1
+
 
 ```
                    . .:.:.:.:. .:\     /:. .:.:.:.:. ,
