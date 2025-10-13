@@ -61,7 +61,13 @@ function q($sql, $params = []) {
             else { $types .= 's'; $p = (string)$p; }
             $vals[] = $p;
         }
-        mysqli_stmt_bind_param($stmt, $types, ...$vals);
+        $refs = [];
+        foreach ($vals as $idx => $value) {
+            $refs[$idx] = &$vals[$idx];
+        }
+        if (!mysqli_stmt_bind_param($stmt, $types, ...$refs)) {
+            json_response(['error'=>mysqli_stmt_error($stmt)], 500);
+        }
     }
     mysqli_stmt_execute($stmt);
     $res = mysqli_stmt_get_result($stmt);

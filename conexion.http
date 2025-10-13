@@ -1,5 +1,11 @@
 
-### Registrar jugador
+### Registrar jugador (segmentos)
+POST http://localhost:8002/auth/register/player%40example.com/player123/player
+
+### Registrar admin (segmentos, opcional)
+POST http://localhost:8002/auth/register/admin%40example.com/admin123/admin
+
+### Registrar jugador (JSON, alternativa)
 POST http://localhost:8002/auth/register
 Content-Type: application/json
 
@@ -9,7 +15,7 @@ Content-Type: application/json
   "role": "player"
 }
 
-### Registrar admin (opcional)
+### Registrar admin (JSON, alternativa)
 POST http://localhost:8002/auth/register
 Content-Type: application/json
 
