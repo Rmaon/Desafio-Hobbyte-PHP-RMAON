@@ -1,0 +1,144 @@
+
+### Registrar jugador
+POST http://localhost:8002/auth/register
+Content-Type: application/json
+
+{
+  "email": "player@example.com",
+  "password": "player123",
+  "role": "player"
+}
+
+### Registrar admin (opcional)
+POST http://localhost:8002/auth/register
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin123",
+  "role": "admin"
+}
+
+### Login jugador
+POST http://localhost:8002/auth/login
+Content-Type: application/json
+
+{
+  "email": "player@example.com",
+  "password": "player123"
+}
+
+### Logout
+POST http://localhost:8002/auth/logout
+
+### --------------------------
+### USER
+### --------------------------
+
+### Ver mi perfil
+GET http://localhost:8002/user/me
+
+### Cambiar contraseña
+POST http://localhost:8002/user/password
+Content-Type: application/json
+
+{
+  "password": "nuevoPass123"
+}
+
+### Ver estadísticas del usuario
+GET http://localhost:8002/user/stats
+
+### --------------------------
+### GAMER — PARTIDAS
+### --------------------------
+
+### Crear partida estándar (4x5)
+POST http://localhost:8002/gamer/games
+Content-Type: application/json
+
+{
+  "nombre": "Mi partida estándar"
+}
+
+### Crear partida personalizada (lineal 1x10)
+POST http://localhost:8002/gamer/games
+Content-Type: application/json
+
+{
+  "nombre": "Mi partida 1x10",
+  "filas": 1,
+  "columnas": 10
+}
+
+### Consultar estado de una partida (cambia :id)
+GET http://localhost:8002/gamer/games/1
+
+### Destapar casilla (0,0) en la partida :id
+POST http://localhost:8002/gamer/games/1/reveal
+Content-Type: application/json
+
+{
+  "cordX": 0,
+  "cordY": 0
+}
+
+### Destapar casilla (0,1)
+POST http://localhost:8002/gamer/games/1/reveal
+Content-Type: application/json
+
+{
+  "cordX": 0,
+  "cordY": 1
+}
+
+### Rendirse en la partida :id
+POST http://localhost:8002/gamer/games/1/surrender
+
+### --------------------------
+### ADMIN (requiere login como admin)
+### --------------------------
+
+### Login admin
+POST http://localhost:8002/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "admin123"
+}
+
+### Listar usuarios
+GET http://localhost:8002/admin/users
+
+### Crear usuario (admin)
+POST http://localhost:8002/admin/users
+Content-Type: application/json
+
+{
+  "email": "otro@demo.com",
+  "password": "changeme",
+  "role": "player"
+}
+
+### Cambiar rol a admin (id = 2 de ejemplo)
+PATCH http://localhost:8002/admin/users/2/role
+Content-Type: application/json
+
+{
+  "role": "admin"
+}
+
+### (Alternativa si tu cliente no soporta PATCH) via _method
+POST http://localhost:8002/admin/users/2/role?_method=PATCH
+Content-Type: application/json
+
+{
+  "role": "admin"
+}
+
+### Eliminar usuario (id = 3 de ejemplo)
+DELETE http://localhost:8002/admin/users/3
+
+### (Alternativa via _method)
+POST http://localhost:8002/admin/users/3?_method=DELETE
